@@ -7,6 +7,7 @@
 import Foundation
 import UIKit
 
+@preconcurrency @MainActor
 @objc public protocol SlideMenuControllerDelegate {
     @objc optional func leftWillOpen()
     @objc optional func leftDidOpen()
@@ -18,6 +19,7 @@ import UIKit
     @objc optional func rightDidClose()
 }
 
+@preconcurrency @MainActor
 public struct SlideMenuOptions {
     public static var leftViewWidth: CGFloat = 270.0
     public static var leftBezelWidth: CGFloat? = 16.0
@@ -350,7 +352,8 @@ open class SlideMenuController: UIViewController, UIGestureRecognizerDelegate {
         // function is for tracking
         // Please to override it if necessary
     }
-    
+
+    @MainActor
     struct LeftPanState {
         static var frameAtStartOfPan: CGRect = CGRect.zero
         static var startPointOfPan: CGPoint = CGPoint.zero
@@ -433,7 +436,8 @@ open class SlideMenuController: UIViewController, UIGestureRecognizerDelegate {
         
         LeftPanState.lastState = panGesture.state
     }
-    
+
+    @MainActor
     struct RightPanState {
         static var frameAtStartOfPan: CGRect = CGRect.zero
         static var startPointOfPan: CGPoint = CGPoint.zero

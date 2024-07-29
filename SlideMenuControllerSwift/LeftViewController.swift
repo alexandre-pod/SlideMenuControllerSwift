@@ -15,6 +15,7 @@ enum LeftMenu: Int {
     case nonMenu
 }
 
+@MainActor
 protocol LeftMenuProtocol : AnyObject {
     func changeViewController(_ menu: LeftMenu)
 }
